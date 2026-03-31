@@ -1,0 +1,101 @@
+product_id,product_name,category,cost_per_unit,selling_price,units_sold,month
+P001,Ball Pen Blue,Pens,5,12,320,January
+P002,Ball Pen Black,Pens,5,12,300,January
+P003,Notebook A4,Notebooks,25,50,180,January
+P004,Notebook A5,Notebooks,18,35,200,January
+P005,Pencil HB,Pencils,3,8,450,January
+P006,Color Pencil Set,Pencils,40,80,120,January
+P007,Marker Black,Markers,12,25,150,January
+P008,Highlighter Yellow,Highlighters,10,22,140,January
+P009,Glue Stick,Adhesives,8,18,160,January
+P010,Stapler Small,Office Tools,35,70,70,January
+P011,Ball Pen Blue,Pens,5,12,310,February
+P012,Ball Pen Black,Pens,5,12,290,February
+P013,Notebook A4,Notebooks,25,50,170,February
+P014,Notebook A5,Notebooks,18,35,210,February
+P015,Pencil HB,Pencils,3,8,420,February
+P016,Color Pencil Set,Pencils,40,80,130,February
+P017,Marker Black,Markers,12,25,140,February
+P018,Highlighter Yellow,Highlighters,10,22,130,February
+P019,Glue Stick,Adhesives,8,18,150,February
+P020,Stapler Small,Office Tools,35,70,65,February
+P021,Ball Pen Blue,Pens,5,12,330,March
+P022,Ball Pen Black,Pens,5,12,310,March
+P023,Notebook A4,Notebooks,25,50,200,March
+P024,Notebook A5,Notebooks,18,35,230,March
+P025,Pencil HB,Pencils,3,8,480,March
+P026,Color Pencil Set,Pencils,40,80,150,March
+P027,Marker Black,Markers,12,25,160,March
+P028,Highlighter Yellow,Highlighters,10,22,145,March
+P029,Glue Stick,Adhesives,8,18,170,March
+P030,Stapler Small,Office Tools,35,70,75,March
+P031,Ball Pen Blue,Pens,5,12,340,April
+P032,Ball Pen Black,Pens,5,12,320,April
+P033,Notebook A4,Notebooks,25,50,210,April
+P034,Notebook A5,Notebooks,18,35,240,April
+P035,Pencil HB,Pencils,3,8,500,April
+P036,Color Pencil Set,Pencils,40,80,160,April
+P037,Marker Black,Markers,12,25,170,April
+P038,Highlighter Yellow,Highlighters,10,22,150,April
+P039,Glue Stick,Adhesives,8,18,180,April
+P040,Stapler Small,Office Tools,35,70,80,April
+P041,Ball Pen Blue,Pens,5,12,350,May
+P042,Ball Pen Black,Pens,5,12,330,May
+P043,Notebook A4,Notebooks,25,50,220,May
+P044,Notebook A5,Notebooks,18,35,250,May
+P045,Pencil HB,Pencils,3,8,520,May
+P046,Color Pencil Set,Pencils,40,80,170,May
+P047,Marker Black,Markers,12,25,175,May
+P048,Highlighter Yellow,Highlighters,10,22,160,May
+P049,Glue Stick,Adhesives,8,18,190,May
+P050,Stapler Small,Office Tools,35,70,85,May
+P051,Ball Pen Blue,Pens,5,12,360,June
+P052,Ball Pen Black,Pens,5,12,340,June
+P053,Notebook A4,Notebooks,25,50,230,June
+P054,Notebook A5,Notebooks,18,35,260,June
+P055,Pencil HB,Pencils,3,8,540,June
+P056,Color Pencil Set,Pencils,40,80,180,June
+P057,Marker Black,Markers,12,25,185,June
+P058,Highlighter Yellow,Highlighters,10,22,165,June
+P059,Glue Stick,Adhesives,8,18,200,June
+P060,Stapler Small,Office Tools,35,70,90,June
+P061,Ball Pen Blue,Pens,5,12,370,July
+P062,Ball Pen Black,Pens,5,12,350,July
+P063,Notebook A4,Notebooks,25,50,240,July
+P064,Notebook A5,Notebooks,18,35,270,July
+P065,Pencil HB,Pencils,3,8,560,July
+P066,Color Pencil Set,Pencils,40,80,190,July
+P067,Marker Black,Markers,12,25,190,July
+P068,Highlighter Yellow,Highlighters,10,22,170,July
+P069,Glue Stick,Adhesives,8,18,210,July
+P070,Stapler Small,Office Tools,35,70,95,July
+P071,Ball Pen Blue,Pens,5,12,380,August
+P072,Ball Pen Black,Pens,5,12,360,August
+P073,Notebook A4,Notebooks,25,50,250,August
+P074,Notebook A5,Notebooks,18,35,280,August
+P075,Pencil HB,Pencils,3,8,580,August
+P076,Color Pencil Set,Pencils,40,80,200,August
+P077,Marker Black,Markers,12,25,195,August
+P078,Highlighter Yellow,Highlighters,10,22,175,August
+P079,Glue Stick,Adhesives,8,18,220,August
+P080,Stapler Small,Office Tools,35,70,100,August
+P081,Ball Pen Blue,Pens,5,12,390,September
+P082,Ball Pen Black,Pens,5,12,370,September
+P083,Notebook A4,Notebooks,25,50,260,September
+P084,Notebook A5,Notebooks,18,35,290,September
+P085,Pencil HB,Pencils,3,8,600,September
+P086,Color Pencil Set,Pencils,40,80,210,September
+P087,Marker Black,Markers,12,25,200,September
+P088,Highlighter Yellow,Highlighters,10,22,180,September
+P089,Glue Stick,Adhesives,8,18,230,September
+P090,Stapler Small,Office Tools,35,70,105,September
+P091,Ball Pen Blue,Pens,5,12,400,October
+P092,Ball Pen Black,Pens,5,12,380,October
+P093,Notebook A4,Notebooks,25,50,270,October
+P094,Notebook A5,Notebooks,18,35,300,October
+P095,Pencil HB,Pencils,3,8,620,October
+P096,Color Pencil Set,Pencils,40,80,220,October
+P097,Marker Black,Markers,12,25,210,October
+P098,Highlighter Yellow,Highlighters,10,22,190,October
+P099,Glue Stick,Adhesives,8,18,240,October
+P100,Stapler Small,Office Tools,35,70,110,October
