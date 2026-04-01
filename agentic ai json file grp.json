@@ -1,0 +1,743 @@
+{
+  "name": "Agentic AI in Business Insights and Decision Support Assistance_Somwrik",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1K1iCzsDPHRQtDNRLxeh4R0UQRdtN0hvn",
+          "mode": "list",
+          "cachedResultName": "stationary_sales_data (1).csv",
+          "cachedResultUrl": "https://drive.google.com/file/d/1K1iCzsDPHRQtDNRLxeh4R0UQRdtN0hvn/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1376,
+        -320
+      ],
+      "id": "fa3a7db9-e69c-4d0b-b755-f662f6cf8076",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "IRipMyrdhEt8ByOg",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1216,
+        -272
+      ],
+      "id": "1d160d38-7420-46d6-9596-06315d84b632",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -1136,
+        -640
+      ],
+      "id": "8fd42e87-6d46-41dc-862d-4fc9c5f99141",
+      "name": "When chat message received",
+      "webhookId": "d58c3584-95a6-4ea9-894a-68eaa6d80c8d"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "SMq9ICTuls0JL5oV",
+          "mode": "list",
+          "cachedResultName": "sales",
+          "cachedResultUrl": "/projects/jtjK2sgUWTJQhKtu/datatables/SMq9ICTuls0JL5oV"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "product_id",
+              "keyValue": "={{ $json.product_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "product_id",
+              "displayName": "product_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "cost_per_unit",
+              "displayName": "cost_per_unit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "selling_price",
+              "displayName": "selling_price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "units_sold",
+              "displayName": "units_sold",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "month",
+              "displayName": "month",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "revenue",
+              "displayName": "revenue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "profit",
+              "displayName": "profit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "margin",
+              "displayName": "margin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -2032,
+        -272
+      ],
+      "id": "6101ae0e-e2d6-46aa-9c0d-220c5db2abc4",
+      "name": "Upsert row(s)"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1536,
+        -432
+      ],
+      "id": "348edf11-3c51-4749-895a-9c138038fc1a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ad104677-53a5-4215-8443-96e1310c2ca9",
+              "leftValue": "={{ $json.output[0].content[0].text }}",
+              "rightValue": "YES",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -608,
+        -640
+      ],
+      "id": "dca5509a-0ed7-4ac9-8907-cff9a58f8f3a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"content\": \"I can only answer questions related to product sales data.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -304,
+        -432
+      ],
+      "id": "bac474a4-d228-4730-93fc-abb160cf29fd",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.query }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        176,
+        -704
+      ],
+      "id": "afa47a5e-eacc-43ad-bc5c-f62dff940464",
+      "name": "Execute a SQL query",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "kqzt49h3MtuTyGeS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "sales_data",
+          "mode": "list",
+          "cachedResultName": "sales_data"
+        },
+        "columnToMatchOn": "product_id_month",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -848,
+        -272
+      ],
+      "id": "d8e132fa-b1b0-4b27-8d0b-e142f69f56cc",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "kqzt49h3MtuTyGeS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gemma3:4b",
+          "mode": "list",
+          "cachedResultName": "gemma3:4b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a strict binary classifier.\n\nYour task:\nDecide whether the user's query is relevant to the given dataset.\n\n---\n\nDATASET CONTEXT:\n\nThe dataset contains sales data with the following fields:\n\n* product_id\n* product_name\n* category\n* cost_per_unit\n* selling_price\n* units_sold\n* month\n\nThe dataset supports analysis of:\n\n* sales performance\n* revenue\n* profit and loss\n* margins\n* product ranking\n* category analysis\n* monthly trends\n\n---\n\nDECISION LOGIC (VERY IMPORTANT):\n\nStep 1: Check if the query is about ANY of these:\n\n* product / item\n* sales / units sold\n* revenue / profit / loss / margin\n* category\n* month / time trends\n\nIf YES → proceed to Step 2\nIf NO → output NO immediately\n\n---\n\nStep 2: Check if the query can be answered using ONLY the dataset fields.\n\nIf YES → output YES\nIf NO → output NO\n\n---\n\nSTRICT REJECTION RULES (CRITICAL):\n\nAlways output NO if the query is about:\n\n* geography (capital, country, city, location)\n* weather\n* politics\n* history\n* general knowledge\n* personal questions\n* coding/programming unrelated to dataset\n* anything outside sales/product/business context\n\nExample:\n\n* \"capital of Kolkata\" → NO\n* \"weather today\" → NO\n* \"who is PM of India\" → NO\n\n---\n\nSTRICT ACCEPTANCE RULES:\n\nEven short or vague queries MUST be YES if related:\n\n* \"best product\"\n* \"worst item\"\n* \"top selling\"\n* \"low profit products\"\n\n---\n\nOUTPUT FORMAT:\n\nReturn ONLY one word:\nYES or NO\n\n---\n\nNow classify the following user query:\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        -880
+      ],
+      "id": "87ece38d-7c5c-4829-9fc2-0a932b36ed2e",
+      "name": "Relevance Generator",
+      "credentials": {
+        "ollamaApi": {
+          "id": "gDjnwLmqGTOMjryY",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gemma3:4b",
+          "mode": "list",
+          "cachedResultName": "gemma3:4b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a MySQL expert.\n\nConvert user query into SQL.\n\nTable: sales_data\n\nColumns:\nproduct_name, category, revenue, profit, units_sold, month\n\nRules:\n- Output ONLY SQL\n- No explanation\n- Start with SELECT\n- One line only\n\nLogic:\n- If \"product\" → GROUP BY product_name\n- If \"category\" → GROUP BY category\n- Default → GROUP BY product_name\n\n- If \"profit\" → SUM(profit) AS total_profit\n- Else → SUM(revenue) AS total_revenue\n\n- If number exists → LIMIT that number\n- Else → LIMIT 5\n\n- Always ORDER BY DESC\n\nUser:\n{{ $json[\"chatInput\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        -2032,
+        -720
+      ],
+      "id": "8be240e7-e0cc-4723-8ab0-910cc484aeb1",
+      "name": "sql generator",
+      "credentials": {
+        "ollamaApi": {
+          "id": "gDjnwLmqGTOMjryY",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\n\n// Numbers\nconst selling_price = Number(row.selling_price ?? 0);\nconst units_sold = Number(row.units_sold ?? 0);\nconst cost_per_unit = Number(row.cost_per_unit ?? 0);\n\n// Calculations\nconst revenue = selling_price * units_sold;\nconst cost = cost_per_unit * units_sold;\nconst profit = revenue - cost;\nconst margin = revenue ? Number(((profit / revenue) * 100).toFixed(2)) : 0;\n\n// Clean fields\nconst product_id = String(row.product_id ?? \"\").trim();\nconst month = String(row.month ?? \"\").trim().toLowerCase();\n\n// Unique key (FIXED)\nconst product_id_month = `${product_id}_${month}`;\n\nreturn {\n  json: {\n    product_id,\n    product_name: row.product_name ?? \"\",\n    category: row.category ?? \"\",\n    cost_per_unit,\n    selling_price,\n    units_sold,\n    month,\n    revenue,\n    profit,\n    margin,\n    product_id_month\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1040,
+        -272
+      ],
+      "id": "360890cc-ba10-45c0-b688-8fd7f2f02fa2",
+      "name": "unique key code"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gemma3:4b",
+          "mode": "list",
+          "cachedResultName": "gemma3:4b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a business insights assistant.\n\nConvert the SQL output into a clean, human-readable answer.\n\nRules:\n- Show ranking (1, 2, 3…)\n- Use ₹ symbol for revenue\n- Keep it short and clear\n- No JSON\n- No technical terms\n\nSQL Result:\n{{ JSON.stringify($json) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        -2064,
+        -528
+      ],
+      "id": "a65dd103-1ef7-479d-9ce2-cec374187c67",
+      "name": "Message a model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "gDjnwLmqGTOMjryY",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "deepseek/deepseek-chat-v3.1",
+          "mode": "list",
+          "cachedResultName": "DEEPSEEK/DEEPSEEK-CHAT-V3.1"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a strict MySQL query generator.\n\nYour task:\nConvert the user query into a correct SQL query.\n\nTable: sales_data\n\nColumns:\nproduct_id, product_name, category, cost_per_unit, selling_price, units_sold, month, revenue, profit, margin, product_id_month\n\nSTRICT RULES:\n\n- Output ONLY SQL (no explanation, no text)\n- One single line\n- Always start with SELECT\n- Use only the given columns\n- Never hallucinate columns\n\n---\n\nSTEP 1: DETERMINE GROUPING\n\n- If query mentions \"category\" → GROUP BY category\n- If query mentions \"product\" OR no clear grouping → GROUP BY product_name\n\n---\n\nSTEP 2: DETERMINE METRIC\n\n- If query contains \"profit\", \"profitable\", \"loss\", \"loss-making\", \"worst\" → use:\n  SUM(profit) AS total_profit\n\n- If query contains \"revenue\", \"sales\", \"selling\" → use:\n  SUM(revenue) AS total_revenue\n\n- If query contains \"units\", \"sold\", \"most selling\" → use:\n  SUM(units_sold) AS total_units\n\n- Default → SUM(revenue) AS total_revenue\n\n---\n\nSTEP 3: FILTER BY MONTH\n\n- If a month is mentioned (January–December):\n  WHERE month = 'monthname in lowercase'\n\n---\n\nSTEP 4: HANDLE BEST vs WORST\n\n- If query contains:\n  \"best\", \"top\", \"highest\", \"most\" → ORDER BY metric DESC\n\n- If query contains:\n  \"worst\", \"lowest\", \"least\", \"loss\", \"loss-making\" → ORDER BY metric ASC\n\n---\n\nSTEP 5: REMOVE INVALID DATA\n\n- If using profit → add WHERE profit != 0\n- If using revenue → add WHERE revenue != 0\n\n(If WHERE already exists, append using AND)\n\n---\n\nSTEP 6: LIMIT LOGIC\n\n- If query contains a number → LIMIT that number\n- If query contains \"best\", \"worst\", \"highest\", \"lowest\" → LIMIT 1\n- Otherwise → LIMIT 5\n\n---\n\nSTEP 7: FINAL STRUCTURE\n\nSELECT <group_field>, <metric>\nFROM sales_data\n[WHERE ...]\nGROUP BY <group_field>\nORDER BY <metric_alias> ASC/DESC\nLIMIT N\n\n---\n\nUser Query:\n{{ $json[\"chatInput\"] }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "store": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        -736
+      ],
+      "id": "c89482d2-55df-4efc-85f8-2663b71d4035",
+      "name": "SQL generator",
+      "credentials": {
+        "openAiApi": {
+          "id": "nLunNvhIqeJnAONA",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "deepseek/deepseek-chat-v3.1",
+          "mode": "list",
+          "cachedResultName": "DEEPSEEK/DEEPSEEK-CHAT-V3.1"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a strict binary classifier.\n\nYour task:\nDecide whether the user's query is relevant to the given dataset.\n\n---\n\nDATASET CONTEXT:\n\nThe dataset contains sales data with:\nproduct_id, product_name, category, cost_per_unit, selling_price, units_sold, month\n\nSupports:\n\n* sales performance\n* revenue, profit, margin\n* product/category ranking\n* monthly trends\n\n---\n\nDECISION LOGIC:\n\nStep 1: Check INTENT (most important)\n\nIf the query is about ANY of:\n\n* product / item\n* sales / units\n* revenue / profit / loss / margin\n* category\n* month / trends\n\n→ OUTPUT YES immediately (even if vague)\n\nExamples:\n\n* \"best product\" → YES\n* \"worst item\" → YES\n* \"top selling\" → YES\n\n---\n\nStep 2: Reject ONLY if clearly unrelated\n\nOutput NO ONLY if the query is about:\n\n* geography (capital, country, city)\n* weather\n* politics\n* history\n* general knowledge\n* personal questions\n* coding/programming unrelated to dataset\n\nExamples:\n\n* \"capital of Kolkata\" → NO\n* \"weather today\" → NO\n\n---\n\nIMPORTANT RULE:\n\nIf there is ANY chance the query relates to products, sales, revenue, profit, category, or month → ALWAYS YES\n\nDo NOT overthink or reject vague queries.\n\n---\n\nOUTPUT:\n\nReturn ONLY one word:\nYES or NO\n\n---\n\nNow classify the following user query:\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "store": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -928,
+        -656
+      ],
+      "id": "8cf1a9b7-98bb-4e2c-9639-936041b483fe",
+      "name": "Message a model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "nLunNvhIqeJnAONA",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "93acb49a-2dc3-4f3d-95eb-82df3c38837c",
+              "name": "final answer",
+              "value": "={{\n  (\n    $json.output?.[0]?.content?.[0]?.text\n    || $json.output_text\n    || $json.text\n    || \"No response generated\"\n  )\n  .replace(/^Here are.*?:\\s*/i, \"\")\n  .replace(/(\\d+\\.)/g, \"\\n$1\")\n  .trim()\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        832,
+        -736
+      ],
+      "id": "d1daab33-b297-48e0-bea1-48de1c96684e",
+      "name": "Final Answer"
+    },
+    {
+      "parameters": {
+        "jsCode": "let sql = $json.output || $json.query || \"\";\n\n// Clean SQL\nsql = String(sql).replace(/```sql|```/gi, '').trim();\n\n// Normalize AFTER cleaning\nlet lowerSQL = sql.toLowerCase();\n\n// Block dangerous queries\nconst forbidden = ['insert', 'update', 'delete', 'drop', 'alter', 'truncate', 'create', 'replace'];\n\nfor (let word of forbidden) {\n  if (lowerSQL.includes(word)) {\n    throw new Error(\"Unsafe SQL detected!\");\n  }\n}\n\n// Ensure SELECT only\nif (!lowerSQL.startsWith('select')) {\n  sql = \"SELECT * FROM sales_data LIMIT 5\";\n}\n\n// 🔥 IMPORTANT: re-check AFTER possible changes\nlowerSQL = sql.toLowerCase();\n\n// Ensure LIMIT exists ONLY ONCE\nif (!lowerSQL.includes('limit')) {\n  sql += \" LIMIT 10\";\n}\n\n// Return\nreturn [\n  {\n    json: {\n      query: sql\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -704
+      ],
+      "id": "0251bea7-2dda-45ae-82b8-f9a360127dac",
+      "name": "SQL Cleaner & Validator"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.all();\n\n// 1. Handle empty data\nif (!data || data.length === 0) {\n  return [\n    {\n      json: {\n        summary: \"No data found\"\n      }\n    }\n  ];\n}\n\n// 2. Extract clean JSON\nconst cleaned = data.map(item => item.json);\n\n// 3. Return BOTH structured + readable\nreturn [\n  {\n    json: {\n      data: cleaned,\n      summary: JSON.stringify(cleaned, null, 2),\n      row_count: cleaned.length\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        -736
+      ],
+      "id": "ac4d6780-eacf-44b9-947d-e47453db77be",
+      "name": "Data Formatter"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "deepseek/deepseek-chat-v3.1",
+          "mode": "list",
+          "cachedResultName": "DEEPSEEK/DEEPSEEK-CHAT-V3.1"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a business analyst.\n\nYour task:\nConvert the given dataset into a clean, human-readable answer based on the user's query.\n\nRules:\n- ALWAYS sort results correctly based on the relevant metric (highest to lowest unless asked otherwise)\n- Show ranking clearly (1, 2, 3… each on a new line)\n- Use ₹ ONLY for revenue or profit values\n- Use normal numbers for units or counts\n- Use the correct metric based on the query:\n  • revenue → ₹\n  • profit → ₹\n  • units_sold → number\n- Do NOT assume revenue unless present\n- Keep it short and clear\n- Do NOT show JSON\n- Do NOT use technical column names\n- If only one result, give a direct answer (no ranking)\n\nUser Query:\n{{ $json.user_query }}\n\nDataset:\n{{ JSON.stringify($json.data) }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "store": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        -736
+      ],
+      "id": "d03bdc5d-b6d4-43b0-9c2e-4b8e96408ca0",
+      "name": "Message a model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "nLunNvhIqeJnAONA",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "unique key code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert row(s)": {
+      "main": [
+        []
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "SQL generator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query": {
+      "main": [
+        [
+          {
+            "node": "Data Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Relevance Generator": {
+      "main": [
+        []
+      ]
+    },
+    "sql generator": {
+      "main": [
+        []
+      ]
+    },
+    "unique key code": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        []
+      ]
+    },
+    "SQL generator": {
+      "main": [
+        [
+          {
+            "node": "SQL Cleaner & Validator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SQL Cleaner & Validator": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Formatter": {
+      "main": [
+        [
+          {
+            "node": "Message a model2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model2": {
+      "main": [
+        [
+          {
+            "node": "Final Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "617c34d4-ad4c-45e9-bffd-402c114fb60e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6ac78e3597ab72663787a9b34ffd080725960464041fb9dcb15f33a7210fe577"
+  },
+  "id": "Ru8Vh0c32x5PwP6R",
+  "tags": []
+}
